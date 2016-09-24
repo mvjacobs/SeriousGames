@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src='lib/quintus.js'></script>
+        <script src='lib/quintus_sprites.js'></script>
+        <script src='lib/quintus_scenes.js'></script>
+        <script src='lib/quintus_input.js'></script>
+        <script src='lib/quintus_anim.js'></script>
+        <script src='lib/quintus_2d.js'></script>
+        <script src='lib/quintus_touch.js'></script>
+        <script src='lib/quintus_ui.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    </head>
+    <body style="background-color: black;">
+        <script>
+        
+        var Q = Quintus()
+            .include("Sprites, Scenes, Input, 2D, Touch, UI")
+            .setup({
+                width: 1366,
+                height: 784,
+                scaleToFit: true,
+                development: false
+            }).controls().touch();            
+        
+        Q.Sprite.extend("Utopia", {
+		    init: function(p) {
+		    	this._super(p, {asset: "blockquestion.png"});
+		        this.on("hit.sprite",function(collision) {
+		            if(collision.obj.isA("Player")) {
+		            	$.fancybox([
+					    {
+					    	afterClose: function() {
+					    		$('#quintus').focus();
+					    	},
+					        'href' : '/assets/Project Utopia.pdf',
+					        'title' : 'Project Utopia',
+					        'autoScale': true,
+				            'transitionIn': 'fade',
+				            'transitionOut': 'fade',
+				            'type': 'iframe',
+				            'width': '50%',
+            				'height': '70%',
+            				fitToView   : false,
+							autoSize    : false
+					    }], {
+						    padding : 0   
+						});
+		            }
+		        });           
+			}
+		});
+
+		Q.Sprite.extend("Pitch", {
+		    init: function(p) {
+		    	this._super(p, {asset: "blockquestion.png"});
+		        this.on("hit.sprite",function(collision) {
+		            if(collision.obj.isA("Player")) {
+		            	$.fancybox([
+					    {
+					    	afterClose: function() {
+					    		$('#quintus').focus();
+					    	},
+					        'href' : '/assets/moodboard.pdf',
+					        'title' : 'Game Pitch',
+					        'autoScale': true,
+				            'transitionIn': 'fade',
+				            'transitionOut': 'fade',
+				            'type': 'iframe',
+				            'width': '50%',
+            				'height': '70%',
+            				fitToView   : false,
+							autoSize    : false
+					    }], {
+						    padding : 0   
+						});
+		            }
+		        });           
+			}
+		});
+
+		Q.Sprite.extend("Concept", {
+		    init: function(p) {
+		    	this._super(p, {asset: "blockquestion.png"});
+		        this.on("hit.sprite",function(collision) {
+		            if(collision.obj.isA("Player")) {
+		            	$.fancybox([
+					    {
+					    	afterClose: function() {
+					    		$('#quintus').focus();
+					    	},
+					        'href' : '/assets/concept-presentation.pdf',
+					        'title' : 'Game Concept',
+					        'autoScale': true,
+				            'transitionIn': 'fade',
+				            'transitionOut': 'fade',
+				            'type': 'iframe',
+				            'width': '50%',
+            				'height': '70%',
+            				fitToView   : false,
+							autoSize    : false
+					    }], {
+						    padding : 0   
+						});
+		            }
+		        });           
+			}
+		});
+		
+		Q.Sprite.extend("Essay", {
+		    init: function(p) {
+		    	this._super(p, {asset: "blockquestion.png"});
+		        this.on("hit.sprite",function(collision) {
+		            if(collision.obj.isA("Player")) {
+		            	$.fancybox([
+					    {
+					    	afterClose: function() {
+					    		$('#quintus').focus();
+					    	},
+					        'href' : '/assets/Marc_essay.pdf',
+					        'title' : 'Serious ethical games.. with serious fun',
+					        'autoScale': true,
+				            'transitionIn': 'fade',
+				            'transitionOut': 'fade',
+				            'type': 'iframe',
+				            'width': '50%',
+            				'height': '70%',
+            				fitToView   : false,
+							autoSize    : false
+					    }], {
+						    padding : 0   
+						});
+		            }
+		        });           
+			}
+		});
+		
+		Q.Sprite.extend("Final", {
+		    init: function(p) {
+		    	this._super(p, {asset: "blockquestion.png"});
+		        this.on("hit.sprite",function(collision) {
+		            if(collision.obj.isA("Player")) {
+		            	$.fancybox([
+					    {
+					    	afterClose: function() {
+					    		$('#quintus').focus();
+					    	},
+					        'href' : 'http://www.duckountancy.nl',
+					        'title' : 'Final prototype: Duckountancy, something with ducks and money',
+					        'autoScale': true,
+				            'transitionIn': 'fade',
+				            'transitionOut': 'fade',
+				            'type': 'iframe',
+				            'width': '50%',
+            				'height': '70%',
+            				fitToView   : false,
+							autoSize    : false
+					    }], {
+						    padding : 0   
+						});
+		            }
+		        });           
+			}
+		});
+
+		Q.Sprite.extend("Block", {
+		    init: function(p) {
+				this._super(p, {asset: "block.png"});
+		    }            
+		});
+
+        // player
+        Q.Sprite.extend("Player",{
+            init: function(p) {
+				this._super(p, { asset: "anton-black.png", x: 110, y: 50, jumpSpeed: -600});
+				this.add('2d, platformerControls');      
+            },
+            step: function(dt) {
+                if(Q.inputs['left'] && this.p.direction == 'right') {
+                    this.p.flip = 'x';
+                } 
+                if(Q.inputs['right']  && this.p.direction == 'left') {
+                    this.p.flip = false;                    
+                }
+            }                    
+		});
+                       
+        // stage
+        Q.scene("portfolio",function(stage) {
+            var background = new Q.TileLayer({ dataAsset: 'portfolio.tmx', layerIndex: 0, sheet: 'tiles', tileW: 70, tileH: 70, type: Q.SPRITE_NONE });
+            stage.insert(background);
+            
+            stage.collisionLayer(new Q.TileLayer({ dataAsset: 'portfolio.tmx', layerIndex:1,  sheet: 'tiles', tileW: 70, tileH: 70 }));
+
+            //load level assets
+            var levelAssets = [
+		    	["Utopia", {x: 210, y: 420}],
+		    	["Pitch", {x: 490, y: 210}],
+		    	["Concept", {x: 1085, y: 178}],
+				["Essay", {x: 875, y: 385}],
+				["Final", {x: 1295, y: 385}],
+			]
+		    stage.loadAssets(levelAssets);
+
+            var player = stage.insert(new Q.Player());
+            stage.add("viewport").follow(player,{x: true, y: true},{minX: 0, maxX: background.p.w, minY: 0, maxY: background.p.h});
+          
+        });
+
+        //load assets
+        Q.load("tiles_map.png, anton-black.png, blockquestion.png, block.png, portfolio.tmx", function() {
+			Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});          
+			Q.stageScene("portfolio");
+        });
+        </script>
+        
+        <a class="utopia" style="display:none" data-fancybox-type="iframe" href="/utopia.html">Iframe</a>
+
+    </body>
+</html>
